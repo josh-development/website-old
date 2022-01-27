@@ -20,7 +20,7 @@
     "build": "vite build",
     "dev": "yarn build && yarn start",
     "serve": "vite preview",
-    "update-submodules": "git pull --recursive-submodules && git submodules update --remote --recursive",
+    "update-submodules": "git pull --recurse-submodules && git submodule update --remote --recursive",
     "prepare": "husky install"
   },
   "dependencies": {
