@@ -1,0 +1,10 @@
+{
+  "extends": "@sapphire/ts-config",
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "types": ["vite/client"]
+  }
+}

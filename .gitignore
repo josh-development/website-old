@@ -1,0 +1,27 @@
+# Ignore a blachole and the folder for development
+node_modules/
+.vs/
+
+# Ignore tsc dist folder
+dist/
+
+# Ignore JavaScript files
+**/*.js
+**/*.jsx
+**/*.mjs
+**/*.js.map
+**/*.d.ts
+!src/**/*.d.ts
+**/*.tsbuildinfo
+!postcss.config.js
+!tailwind.config.js
+
+# Ignore heapsnapshot and log files
+*.heapsnapshot
+*.log
+
+# Ignore package locks
+package-lock.json
+
+# Ignore the GH cli downloaded by workflows
+gh
