@@ -15,7 +15,19 @@
   },
   "cSpell.maxNumberOfProblems": 8,
   "cSpell.numSuggestions": 24,
-  "cSpell.words": ["Évelyne", "Lachance", "Hendry", "typedoc", "realware", "commitlint", "favware", "tsbuildinfo", "vite", "tailwindcss"],
+  "cSpell.words": [
+    "Évelyne",
+    "Lachance",
+    "Hendry",
+    "typedoc",
+    "realware",
+    "commitlint",
+    "favware",
+    "tsbuildinfo",
+    "vite",
+    "tailwindcss",
+    "colorette"
+  ],
   "search.exclude": {
     "**/.docusaurus/": true,
     "**/.git/": true,

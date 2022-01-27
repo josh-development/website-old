@@ -1,3 +1,4 @@
+import { blueBright } from 'colorette';
 import { existsSync } from 'node:fs';
 import { copyFile, mkdir, readdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
@@ -20,3 +21,5 @@ for (const project of projects) {
 
   spinner.succeed(`Imported ${project}`);
 }
+
+console.log(blueBright('Done!'));
