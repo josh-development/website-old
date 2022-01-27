@@ -1,0 +1,4 @@
+[submodule "projects/serialize"]
+  path = projects/serialize
+  url = https://github.com/josh-development/serialize
+  branch = feat/serialize/add-serialize
