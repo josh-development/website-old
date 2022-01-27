@@ -1,5 +1,5 @@
-import { Component } from 'solid-js';
+import type { Component } from 'solid-js';
 
 export const App: Component = () => {
-  return <p>Josh Documentation</p>;
+  return <h1>Josh Documentation</h1>;
 };

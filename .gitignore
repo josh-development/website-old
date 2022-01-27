@@ -15,6 +15,7 @@ dist/
 **/*.tsbuildinfo
 !postcss.config.js
 !tailwind.config.js
+!scripts/**/*.mjs
 
 # Ignore heapsnapshot and log files
 *.heapsnapshot
@@ -25,3 +26,6 @@ package-lock.json
 
 # Ignore the GH cli downloaded by workflows
 gh
+
+# Ignore auto-generated content
+static/docs/*.json
