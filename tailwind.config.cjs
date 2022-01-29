@@ -1,5 +1,6 @@
 module.exports = {
   content: ['./index.html', './src/**/*.tsx'],
+  darkMode: 'class',
   theme: {
     container: {
       center: true,
@@ -11,5 +12,6 @@ module.exports = {
         '2xl': '6rem'
       }
     }
-  }
+  },
+  plugins: [require('@tailwindcss/forms')]
 };
