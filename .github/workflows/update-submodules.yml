@@ -23,7 +23,7 @@ jobs:
           cd website
 
           echo -e "\n# Update submodules"
-          yarn update-submodules
+          git pull --recursive-submodules && git submodule update --remote --recursive
 
           echo -e "\n# Add all files in current directory"
           git add -all .
