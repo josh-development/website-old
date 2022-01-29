@@ -1,0 +1,142 @@
+# Middleware
+
+## What is middleware?
+
+Middleware are simply a class that has methods that can be configured to run before and after providers received payloads from [`Josh`](https://github.com/josh-development/core/blob/main/src/lib/structures/Josh.ts).They make it possible to implement functionalities like [`AutoEnsure`](https://github.com/josh-development/core/blob/main/src/middlewares/CoreAutoEnsure.ts).
+
+## Creating Middleware
+
+There are currently two ways to create middleware:
+
+- Using and extending the [`Middleware`](https://github.com/josh-development/core/blob/main/src/lib/stuctures/Middleware.ts) class.
+- Using simple functions that pass the `payload` as a parameter.
+
+As an example, we are going to check if the `value` in the [`SetPayload`](https://github.com/josh-development/core/blob/main/src/lib/payloads/SetPayload.ts) is a string, if it is we will convert it to upper case.
+
+## Using Classes
+
+If you are using classes then you will have to identify when your methods will run using the `options.conditions` property.
+
+### CommonJS
+
+```javascript
+const { Josh, Method, Middleware } = require('@joshdb/core');
+
+const josh = new Josh({ name: 'name' });
+
+await josh.init();
+
+class MyMiddleware extends Middleware {
+  constructor() {
+    super({ name: 'my-middleware', conditions: { pre: [Method.Set], post: [] } });
+  }
+
+  [Method.Set](payload) {
+    if (typeof payload.value === 'string') payload.value = payload.value.toUpperCase();
+
+    return payload;
+  }
+}
+
+josh.use(new MyMiddleware());
+```
+
+### ESM
+
+```javascript
+import { Josh, Method, Middleware } from '@joshdb/core';
+
+const josh = new Josh({ name: 'name' });
+
+await josh.init();
+
+class MyMiddleware extends Middleware {
+  constructor() {
+    super({ name: 'my-middleware', conditions: { pre: [Method.Set], post: [] } });
+  }
+
+  [Method.Set](payload) {
+    if (typeof payload.value === 'string') payload.value = payload.value.toUpperCase();
+
+    return payload;
+  }
+}
+
+josh.use(new MyMiddleware());
+```
+
+### TypeScript
+
+```typescript
+import { Josh, Method, Middleware, SetPayload } from '@joshdb/core';
+
+const josh = new Josh({ name: 'name' });
+
+await josh.init();
+
+class MyMiddleware<StoredValue = unknown> extends Middleware<StoredValue> {
+  public constructor() {
+    super({ name: 'my-middleware', conditions: { pre: [Method.Set], post: [] } });
+  }
+
+  public [Method.Set]<Value = StoredValue>(payload: SetPayload<Value>): SetPayload<Value> {
+    if (typeof payload.value === 'string') payload.value = payload.value.toUpperCase();
+
+    return payload;
+  }
+}
+
+josh.use(new MyMiddleware());
+```
+
+## Using Functions
+
+If you are using functions then you will have to identify when your methods will run by passing a [`Josh.UseMiddlewareOptions`] object to the [`Josh.use()`] method.
+
+### CommonJS
+
+```javascript
+const { Josh, Method, Trigger } = require('@joshdb/core');
+
+const josh = new Josh({ name: 'name' });
+
+await josh.init();
+
+josh.use({ name: 'my-middleware', trigger: Trigger.PreProvider, method: Method.Set }, (payload => {
+    if (typeof payload.value === 'string') payload.value = payload.value.toUpperCase();
+
+    return payload;
+});
+```
+
+### ESM
+
+```javascript
+import { Josh, Method, Trigger } from '@joshdb/core';
+
+const josh = new Josh({ name: 'name' });
+
+await josh.init();
+
+josh.use({ name: 'my-middleware', trigger: Trigger.PrePovider, method: Method.Set }, (payload) => {
+  if (typeof payload.value === 'string') payload.value = payload.value.toUpperCase();
+
+  return payload;
+});
+```
+
+### TypeScript
+
+```typescript
+import { Josh, Method, SetPayload, Trigger } from '@joshdb/core';
+
+const josh = new Josh({ name: 'name' });
+
+await josh.init();
+
+josh.use({ name: 'my-middleware', trigger: Trigger.PreProvider, method: Method.Set }, (payload: SetPayload<StoredValue>) => {
+  if (typeof payload.value === 'string') payload.value = payload.value.toUpperCase();
+
+  return payload;
+});
+```

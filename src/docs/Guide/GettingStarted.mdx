@@ -1,0 +1,54 @@
+# Getting Started with Josh
+
+To use Josh, you need to install `@joshdb/core`. You can do this by running the following command:
+
+```bash
+# npm
+npm install @joshdb/core
+# yarn
+yarn add @joshdb/core
+```
+
+Please notice, you need at least Node.js version 16.0.0 to use Josh.
+
+## Quick Start
+
+To begin, import `@joshdb/core` and initiate [`Josh`](https://github.com/josh-development/core/blob/main/src/lib/structures/Josh.ts). This is where you can customize Josh's behavior. The below snippet will create a Josh instance which saves stored values in-memory.
+
+### CommonJS
+
+```javascript
+const { Josh } = require('@joshdb/core');
+
+const josh = new Josh({ name: 'name' });
+
+await josh.init();
+```
+
+### ESM
+
+```javascript
+const { Josh } from '@joshdb/core';
+
+const josh = new Josh({ name: 'name' });
+
+await josh.init();
+```
+
+### TypeScript
+
+If you'd like to define the stored value type, then you can use [generics](https://www.typescriptlang.org/docs/handbook/2/generics.html).
+
+```typescript
+import { Josh } from '@joshdb./core';
+
+interface User {
+  name: string;
+
+  email: string;
+}
+
+const josh = new Josh<User>({ name: 'name' });
+
+await josh.init();
+```

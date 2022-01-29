@@ -1,5 +1,16 @@
-import type { Component } from 'solid-js';
+import { Router, useRoutes } from 'solid-app-router';
+import { routes } from './constants/routes';
 
-export const App: Component = () => {
-  return <h1>Josh Documentation</h1>;
-};
+export default function App() {
+  const Routes = useRoutes(routes);
+
+  return (
+    <Router
+      children={
+        <div class="font-medium bg-white">
+          <Routes />
+        </div>
+      }
+    />
+  );
+}

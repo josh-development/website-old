@@ -28,4 +28,4 @@ package-lock.json
 gh
 
 # Ignore auto-generated content
-static/docs/*.json
+backend/static/projects/*.json
