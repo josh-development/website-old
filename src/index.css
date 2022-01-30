@@ -31,7 +31,7 @@ pre > code {
 }
 
 code {
-  @apply whitespace-pre px-1 bg-gray-300 dark:bg-slate-700 rounded-md p-1;
+  @apply whitespace-pre px-1  dark:bg-slate-700 rounded-md p-1;
 }
 
 a > code {
@@ -40,4 +40,55 @@ a > code {
 
 .markdown a {
   @apply text-emerald-500 hover:underline;
+}
+
+pre > code.hljs {
+  @apply dark:text-gray-300;
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-vriable.language_ {
+  @apply text-red-400;
+}
+
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  @apply text-purple-400;
+}
+
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id,
+.hljs-variable {
+  @apply text-sky-500;
+}
+
+.hljs-meta .hljs-string,
+.hljs-regexp,
+.hljs-string {
+  @apply text-cyan-800 dark:text-green-600;
+}
+
+.hljs-built_in,
+.hljs-symbol {
+  @apply text-amber-500;
+}
+
+.hljs-code,
+.hljs-comment,
+.hljs-formula {
+  @apply text-gray-500;
 }
