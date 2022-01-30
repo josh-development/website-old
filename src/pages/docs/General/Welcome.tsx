@@ -5,6 +5,7 @@ import Welcome from '../../../docs/General/Welcome.mdx';
 const WelcomePage: Component = () => (
   <>
     <Header id="docs" />
+
     <Welcome />
   </>
 );

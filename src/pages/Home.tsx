@@ -10,7 +10,7 @@ const HomePage: Component = () => {
     <>
       <Header id="home" />
 
-      <Container class="mt-24">
+      <Container center>
         <div class="py-1">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
@@ -20,7 +20,7 @@ const HomePage: Component = () => {
               </p>
             </div>
 
-            <Container class="mt-24">
+            <Container>
               <div class="mt-10">
                 <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
                   <div class="relative">

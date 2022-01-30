@@ -5,6 +5,7 @@ import GettingStarted from '../../../docs/Guide/GettingStarted.mdx';
 const GettingStartedPage: Component = () => (
   <>
     <Header id="guide" />
+
     <GettingStarted />
   </>
 );
