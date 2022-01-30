@@ -1,9 +1,11 @@
 import { Component } from 'solid-js';
 
-const Container: Component<{ class?: string; center?: boolean }> = (props) => {
+const Container: Component<{ class?: string }> = (props) => {
   return (
     <section
-      class={`dark:text-white my-24 container min-h-screen${props.class?.length ? ` ${props.class}` : ''}${props.center ? ' text-center' : ''}`}
+      class={
+        props.class?.length ? `dark:text-white my-6 py-12 container min-h-screen ${props.class}` : 'dark:text-white my-24 container min-h-screen'
+      }
     >
       {props.children}
     </section>

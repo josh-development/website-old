@@ -1,3 +1,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.markdown > h1 {
+  @apply text-6xl py-6;
+}
+
+.markdown > h2 {
+  @apply text-4xl py-6;
+}
+
+.markdown > h3 {
+  @apply text-2xl py-6;
+}
+
+.markdown > p {
+  @apply font-light py-2;
+}
+
+.markdown > ul {
+  @apply font-light list-disc ml-5;
+}
+
+.markdown > hr {
+  @apply my-6;
+}
+
+pre > code {
+  @apply whitespace-pre block p-4 border-2 border-gray-500;
+}
+
+code {
+  @apply whitespace-pre px-1 bg-gray-300 dark:bg-slate-700 rounded-md p-1;
+}
+
+a > code {
+  @apply text-emerald-500 hover:underline;
+}
+
+.markdown a {
+  @apply text-emerald-500 hover:underline;
+}

@@ -13,7 +13,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "clean": "rimraf backend/dist dist node_modules/.cache",
+    "clean": "rimraf  dist node_modules/.cache",
     "import-docs": "node scripts/import-docs.mjs",
     "docs": "yarn workspaces run docs && yarn import-docs",
     "lint": "eslint src --ext tsx --fix",

@@ -4,17 +4,19 @@ import Container from '../components/Container';
 import Header from '../components/Header';
 
 const HomePage: Component = () => {
+  document.title = 'Home | Josh';
+
   const [theme] = useContext(ThemeContext);
 
   return (
     <>
       <Header id="home" />
 
-      <Container center>
+      <Container>
         <div class="py-1">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
-              <img src={`/src/assets/josh-${theme()}.png`} />
+              <img src={`/src/assets/josh-${theme()}.png`} alt="Josh Logo" />
               <p class="max-w-2xl text-2xl text-gray-700 dark:text-white lg:mx-auto font-semibold">
                 A simple, effective, and efficient database wrapper.
               </p>

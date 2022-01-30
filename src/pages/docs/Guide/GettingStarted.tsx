@@ -1,13 +1,20 @@
 import { Component } from 'solid-js';
 import Header from '../../../components/Header';
+import Markdown from '../../../components/Markdown';
 import GettingStarted from '../../../docs/Guide/GettingStarted.mdx';
 
-const GettingStartedPage: Component = () => (
-  <>
-    <Header id="guide" />
+const GettingStartedPage: Component = () => {
+  document.title = 'Getting Started | Josh';
 
-    <GettingStarted />
-  </>
-);
+  return (
+    <>
+      <Header id="guide" />
+
+      <Markdown>
+        <GettingStarted />
+      </Markdown>
+    </>
+  );
+};
 
 export default GettingStartedPage;
