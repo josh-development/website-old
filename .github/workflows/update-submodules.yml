@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Update Submodules
         run: |
-          REPO="https://github.com//${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          REPO="${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
           echo -e "\n# Checkout the repo in the target branch"
           TARGET_BRANCH="main"
