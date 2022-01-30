@@ -26,7 +26,7 @@ jobs:
           git pull --recurse-submodules && git submodule update --remote --recursive
 
           echo -e "\n# Add all files in current directory"
-          git add -all .
+          git add --all .
 
           if git diff-index --quiet HEAD --; then
             echo "No changes to commit, exiting with code 0"
