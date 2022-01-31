@@ -10,7 +10,7 @@ const HomePage: Component = () => {
 
   return (
     <>
-      <Header id="home" />
+      <Header />
 
       <Container>
         <div class="py-1">

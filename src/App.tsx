@@ -18,7 +18,7 @@ export default function App() {
       children={
         <Router
           children={
-            <div class="font-medium bg-white dark:bg-gray-800">
+            <div class="font-medium bg-stone-200 dark:bg-slate-800">
               <Routes />
             </div>
           }

@@ -2,6 +2,7 @@ import { Component, useContext } from 'solid-js';
 import { ThemeContext } from '../../../App';
 import Header from '../../../components/Header';
 import Markdown from '../../../components/Markdown';
+import Sidebar from '../../../components/Sidebar';
 import Welcome from '../../../docs/General/Welcome.mdx';
 
 const WelcomePage: Component = () => {
@@ -11,13 +12,15 @@ const WelcomePage: Component = () => {
 
   return (
     <>
-      <Header id="docs" />
+      <Header />
 
-      <Markdown>
-        <img src={`/src/assets/josh-${theme()}.png`} alt="Josh Logo" />
+      <Sidebar>
+        <Markdown>
+          <img src={`/src/assets/josh-${theme()}.png`} alt="Josh Logo" />
 
-        <Welcome />
-      </Markdown>
+          <Welcome />
+        </Markdown>
+      </Sidebar>
     </>
   );
 };

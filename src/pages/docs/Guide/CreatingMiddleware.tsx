@@ -2,10 +2,10 @@ import { Component } from 'solid-js';
 import Header from '../../../components/Header';
 import Markdown from '../../../components/Markdown';
 import Sidebar from '../../../components/Sidebar';
-import GettingStarted from '../../../docs/Guide/GettingStarted.mdx';
+import CreatingMiddleware from '../../../docs/Guide/CreatingMiddleware.mdx';
 
-const GettingStartedPage: Component = () => {
-  document.title = 'Getting Started | Josh';
+const CreatingMiddlewarePage: Component = () => {
+  document.title = 'Creating Middleware | Josh';
 
   return (
     <>
@@ -13,11 +13,11 @@ const GettingStartedPage: Component = () => {
 
       <Sidebar>
         <Markdown>
-          <GettingStarted />
+          <CreatingMiddleware />
         </Markdown>
       </Sidebar>
     </>
   );
 };
 
-export default GettingStartedPage;
+export default CreatingMiddlewarePage;

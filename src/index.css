@@ -2,36 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
+.markdown {
+  @apply space-y-4;
+}
+
 .markdown > h1 {
-  @apply text-6xl py-6;
+  @apply text-6xl;
 }
 
 .markdown > h2 {
-  @apply text-4xl py-6;
+  @apply text-4xl;
 }
 
 .markdown > h3 {
-  @apply text-2xl py-6;
+  @apply text-2xl;
 }
 
 .markdown > p {
-  @apply font-light py-2;
+  @apply font-normal;
 }
 
 .markdown > ul {
-  @apply font-light list-disc ml-5;
+  @apply font-normal list-disc ml-5;
 }
 
 .markdown > hr {
   @apply my-6;
 }
 
-pre > code {
-  @apply whitespace-pre block p-4 border-2 border-gray-500;
+code {
+  @apply whitespace-pre p-1 bg-neutral-100 dark:bg-slate-900 rounded-md;
 }
 
-code {
-  @apply whitespace-pre px-1  dark:bg-slate-700 rounded-md p-1;
+pre > code {
+  @apply whitespace-pre block p-4 border-2 border-gray-300 bg-neutral-100 dark:bg-slate-900 rounded-md;
 }
 
 a > code {

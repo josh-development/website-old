@@ -4,7 +4,7 @@ import Header from '../components/Header';
 
 const NotFound: Component = () => (
   <>
-    <Header id="404" />
+    <Header />
 
     <Container>
       <h1 class="text-6xl py-2">Page Not Found</h1>

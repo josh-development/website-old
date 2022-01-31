@@ -24,6 +24,19 @@ export const routes: RouteDefinition[] = [
           {
             path: '/getting-started',
             component: lazy(() => import('../pages/docs/Guide/GettingStarted'))
+          },
+          {
+            path: '/creating-middleware',
+            component: lazy(() => import('../pages/docs/Guide/CreatingMiddleware'))
+          }
+        ]
+      },
+      {
+        path: '/Documentation',
+        children: [
+          {
+            path: '/documentation',
+            component: lazy(() => import('../pages/docs/Documentation/Documentation'))
           }
         ]
       }

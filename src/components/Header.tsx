@@ -1,13 +1,13 @@
-import { Link } from 'solid-app-router';
-import { Component, createEffect, createSignal, useContext } from 'solid-js';
+import { Link, useLocation } from 'solid-app-router';
+import { Component, createEffect, createSignal, Show, useContext } from 'solid-js';
 import { ThemeContext } from '../App';
 
-const Header: Component<{ id: string }> = (props) => {
+const Header: Component = (props) => {
   const [theme, setTheme] = useContext(ThemeContext);
-  const [checked, setChecked] = createSignal<boolean>(theme() === 'dark');
+  const [isDark, setIsDark] = createSignal<boolean>(theme() === 'dark');
 
   createEffect(() => {
-    localStorage.setItem('theme', checked() ? 'dark' : 'light');
+    localStorage.setItem('theme', isDark() ? 'dark' : 'light');
 
     if (localStorage.getItem('theme') === 'dark') {
       document.documentElement.classList.add('dark');
@@ -16,10 +16,37 @@ const Header: Component<{ id: string }> = (props) => {
     setTheme(localStorage.getItem('theme'));
   });
 
+  const [menuOpen, setMenuOpen] = createSignal(false);
+  const { pathname } = useLocation();
+
   return (
-    <nav class="sticky top-0 z-50 bg-white dark:bg-slate-900 shadow-md dark:shadow-slate-700 dark:text-white" id={props.id}>
+    <nav class="sticky top-0 z-50 bg-neutral-100 dark:bg-slate-900 shadow-md dark:shadow-slate-800 dark:text-white">
       <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
+          <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+            <button
+              type="button"
+              onClick={() => setMenuOpen(!menuOpen())}
+              class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-inset focus:ring-white"
+            >
+              <span class="sr-only">Open Main Menu</span>
+
+              <Show
+                when={menuOpen()}
+                fallback={
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                }
+                children={
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                }
+              />
+            </button>
+          </div>
+
           <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
             <div class="flex-shrink-0 flex items-center">
               <img class="block h-8 w-auto" src="/src/assets/josh-icon.png" />
@@ -28,18 +55,22 @@ const Header: Component<{ id: string }> = (props) => {
 
             <div class="hidden sm:block sm:ml-6">
               <div class="flex space-x-4">
-                <Link href="/" class={props.id === 'home' ? 'text-emerald-500 px-3 py-2 text-base' : 'hover:text-emerald-500 px-3 py-2 text-base'}>
+                <Link href="/" class={pathname === '/' ? 'text-emerald-500 px-3 py-2 text-base' : 'hover:text-emerald-500 px-3 py-2 text-base'}>
                   Home
                 </Link>
                 <Link
                   href="/docs/General/Welcome"
-                  class={props.id === 'docs' ? 'text-emerald-500 px-3 py-2 text-base' : 'hover:text-emerald-500 px-3 py-2 text-base'}
+                  class={
+                    pathname.startsWith('/docs/General') || pathname.startsWith('/docs/Documentation')
+                      ? 'text-emerald-500 px-3 py-2 text-base'
+                      : 'hover:text-emerald-500 px-3 py-2 text-base'
+                  }
                 >
                   Documentation
                 </Link>
                 <Link
                   href="/docs/Guide/getting-started"
-                  class={props.id === 'guide' ? 'text-emerald-500 px-3 py-2 text-base' : 'hover:text-emerald-500 px-3 py-2 text-base'}
+                  class={pathname.startsWith('/docs/Guide') ? 'text-emerald-500 px-3 py-2 text-base' : 'hover:text-emerald-500 px-3 py-2 text-base'}
                 >
                   Guide
                 </Link>
@@ -61,12 +92,12 @@ const Header: Component<{ id: string }> = (props) => {
 
                   <input
                     type="checkbox"
-                    checked={checked()}
-                    onClick={(event: PointerEvent) => setChecked((event.target as HTMLInputElement).checked)}
+                    checked={isDark()}
+                    onClick={(event: PointerEvent) => setIsDark((event.target as HTMLInputElement).checked)}
                     class="rounded-full block mt-3 text-base"
                   />
                   <div class="mt-2">
-                    {checked() ? (
+                    {isDark() ? (
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path
                           stroke-linecap="round"
@@ -93,30 +124,81 @@ const Header: Component<{ id: string }> = (props) => {
         </div>
       </div>
 
-      <div class="sm:hidden" id="mobile-menu">
-        <div class="px-2 pt-2 pb-3 space-y-1">
-          <Link
-            href="/"
-            class={props.id === 'home' ? 'text-emerald-500 block px-3 py-2 text-base' : 'hover:text-emerald-500 block px-3 py-2 text-base'}
-          >
-            Home
-          </Link>
+      <Show
+        when={menuOpen()}
+        children={
+          <div class="sm:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+              <Link
+                href="/"
+                class={pathname === '/' ? 'text-emerald-500 block px-3 py-2 text-base' : 'hover:text-emerald-500 block px-3 py-2 text-base'}
+              >
+                Home
+              </Link>
 
-          <Link
-            href="/docs/General/Welcome"
-            class={props.id === 'docs' ? 'text-emerald-500 block px-3 py-2 text-base' : 'hover:text-emerald-500 block px-3 py-2 text-base'}
-          >
-            Documentation
-          </Link>
+              <Link
+                href="/docs/General/Welcome"
+                class={
+                  pathname.startsWith('/docs/General') || pathname.startsWith('/docs/Documentation')
+                    ? 'text-emerald-500 block px-3 py-2 text-base'
+                    : 'hover:text-emerald-500 block px-3 py-2 text-base'
+                }
+              >
+                Documentation
+              </Link>
 
-          <Link
-            href="/docs/Guide/getting-started"
-            class={props.id === 'guide' ? 'text-emerald-500 block px-3 py-2 text-base' : 'hover:text-emerald-500 block px-3 py-2 text-base'}
-          >
-            Guide
-          </Link>
-        </div>
-      </div>
+              <Link
+                href="/docs/Guide/getting-started"
+                class={
+                  pathname.startsWith('/docs/Guide')
+                    ? 'text-emerald-500 block px-3 py-2 text-base'
+                    : 'hover:text-emerald-500 block px-3 py-2 text-base'
+                }
+              >
+                Guide
+              </Link>
+
+              <a href="https://discord.gg/N7ZKH3P" target="_blank" class="hover:text-emerald-500 block h-8 w-auto px-3 py-2 text-base">
+                Discord
+              </a>
+
+              <a href="https://github.com/josh-development" target="_blank" class="hover:text-emerald-500 block h-8 w-auto px-3 py-2 text-base">
+                GitHub
+              </a>
+
+              <div class="flex">
+                <input
+                  type="checkbox"
+                  checked={isDark()}
+                  onClick={(event: PointerEvent) => setIsDark((event.target as HTMLInputElement).checked)}
+                  class="rounded-full block mt-3 text-base mx-3"
+                />
+                <div class="mt-2">
+                  {isDark() ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                      />
+                    </svg>
+                  ) : (
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                      />
+                    </svg>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      />
     </nav>
   );
 };
