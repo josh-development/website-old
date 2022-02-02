@@ -64,6 +64,7 @@ const Sidebar: Component = (props) => (
 
         <SidebarChild name="Guide" baseURL="/docs/Guide">
           <SideBarLink href="/docs/Guide/getting-started" name="Getting Started" />
+          <SideBarLink href="/docs/Guide/using-providers" name="Using Providers" />
           <SideBarLink href="/docs/Guide/creating-middleware" name="Creating Middleware" />
         </SidebarChild>
 
