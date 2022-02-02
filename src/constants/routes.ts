@@ -23,15 +23,29 @@ export const routes: RouteDefinition[] = [
         children: [
           {
             path: '/getting-started',
-            component: lazy(() => import('../pages/docs/Guide/GettingStarted'))
+            children: [
+              {
+                path: '/getting-started-with-josh',
+                component: lazy(() => import('../pages/docs/Guide/getting-started/GettingStarted'))
+              },
+              {
+                path: '/using-providers',
+                component: lazy(() => import('../pages/docs/Guide/getting-started/UsingProviders'))
+              }
+            ]
           },
           {
-            path: '/using-providers',
-            component: lazy(() => import('../pages/docs/Guide/UsingProviders'))
-          },
-          {
-            path: '/creating-middleware',
-            component: lazy(() => import('../pages/docs/Guide/CreatingMiddleware'))
+            path: '/middleware',
+            children: [
+              {
+                path: '/what-is-middleware',
+                component: lazy(() => import('../pages/docs/Guide/middleware/WhatIsMiddleware'))
+              },
+              {
+                path: '/creating-middleware',
+                component: lazy(() => import('../pages/docs/Guide/middleware/CreatingMiddleware'))
+              }
+            ]
           }
         ]
       },
