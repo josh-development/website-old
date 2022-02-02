@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'solid-app-router';
 import { Component, createEffect, createSignal, Show } from 'solid-js';
 
-const SidebarChild: Component<{ name: string; baseURL: string; sub?: boolean }> = (props) => {
+export const SidebarChild: Component<{ name: string; baseURL: string; sub?: boolean }> = (props) => {
   const [open, setOpen] = createSignal(false);
   const { pathname } = useLocation();
 
@@ -10,13 +10,13 @@ const SidebarChild: Component<{ name: string; baseURL: string; sub?: boolean }> 
   });
 
   return (
-    <section class="text-lg dark:text-slate-300">
+    <>
       <div
         onClick={() => setOpen(!open())}
         class="block cursor-pointer p-1 px-4 my-1 rounded-md transition ease-in-out hover:bg-neutral-200 dark:hover:bg-slate-800 duration-300"
       >
         <span class={`${props.sub ? 'ml-4' : ''} ${pathname.startsWith(props.baseURL) ? 'text-emerald-500' : ''}`}>{props.name}</span>
-        <span class="float-right mt-1.5 text-slate-400">
+        <span class="float-right text-slate-400">
           <Show
             when={open()}
             fallback={
@@ -34,11 +34,11 @@ const SidebarChild: Component<{ name: string; baseURL: string; sub?: boolean }> 
       </div>
 
       <Show when={open()} children={props.children} />
-    </section>
+    </>
   );
 };
 
-const SidebarLink: Component<{ name: string; href: string; sub?: boolean }> = (props) => {
+export const SidebarLink: Component<{ name: string; href: string; sub?: boolean }> = (props) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -56,8 +56,8 @@ const SidebarLink: Component<{ name: string; href: string; sub?: boolean }> = (p
 
 const Sidebar: Component = (props) => (
   <div class="min-h-screen flex flex-row">
-    <div class="flex flex-col w-1/4 overflow-hidden shadow-md dark:shadow-slate-800 bg-neutral-100 dark:bg-slate-900">
-      <div class="py-4 px-4 dark:text-white">
+    <div class="hidden sm:flex flex-col w-1/4 overflow-hidden shadow-md dark:shadow-slate-800 bg-neutral-100 dark:bg-slate-900">
+      <div class="py-4 px-4 dark:text-neutral-300 text-lg">
         <SidebarChild name="General" baseURL="/docs/General">
           <SidebarLink name="Welcome" href="/docs/General/Welcome" sub />
         </SidebarChild>

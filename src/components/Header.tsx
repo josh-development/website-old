@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'solid-app-router';
 import { Component, createEffect, createSignal, Show, useContext } from 'solid-js';
 import { ThemeContext } from '../App';
+import { SidebarChild, SidebarLink } from './Sidebar';
 
 const Header: Component = (props) => {
   const [theme, setTheme] = useContext(ThemeContext);
@@ -20,7 +21,7 @@ const Header: Component = (props) => {
   const { pathname } = useLocation();
 
   return (
-    <nav class="sticky top-0 z-50 bg-neutral-100 dark:bg-slate-900 shadow-md dark:shadow-slate-800 dark:text-white">
+    <nav class="sticky top-0 bg-neutral-100 dark:bg-slate-900 shadow-md dark:shadow-slate-800 dark:text-white">
       <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
           <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -130,27 +131,53 @@ const Header: Component = (props) => {
                 Home
               </Link>
 
-              <Link
-                href="/docs/General/Welcome"
-                class={
-                  pathname.startsWith('/docs/General') || pathname.startsWith('/docs/Documentation')
-                    ? 'text-emerald-500 block px-3 py-2 text-base'
-                    : 'hover:text-emerald-500 block px-3 py-2 text-base'
-                }
-              >
-                Documentation
-              </Link>
+              <Show
+                when={pathname.startsWith('/docs')}
+                fallback={
+                  <>
+                    <Link
+                      href="/docs/General/Welcome"
+                      class={
+                        pathname.startsWith('/docs/General') || pathname.startsWith('/docs/Documentation')
+                          ? 'text-emerald-500 block px-3 py-2 text-base'
+                          : 'hover:text-emerald-500 block px-3 py-2 text-base'
+                      }
+                    >
+                      Documentation
+                    </Link>
 
-              <Link
-                href="/docs/Guide/getting-started"
-                class={
-                  pathname.startsWith('/docs/Guide')
-                    ? 'text-emerald-500 block px-3 py-2 text-base'
-                    : 'hover:text-emerald-500 block px-3 py-2 text-base'
+                    <Link
+                      href="/docs/Guide/getting-started"
+                      class={
+                        pathname.startsWith('/docs/Guide')
+                          ? 'text-emerald-500 block px-3 py-2 text-base'
+                          : 'hover:text-emerald-500 block px-3 py-2 text-base'
+                      }
+                    >
+                      Guide
+                    </Link>
+                  </>
                 }
-              >
-                Guide
-              </Link>
+                children={
+                  <>
+                    <SidebarChild name="Documentation" baseURL="/docs/Documentation">
+                      <SidebarLink href="/docs/Documentation/documentation" name="Documentation" sub />
+                    </SidebarChild>
+
+                    <SidebarChild name="Guide" baseURL="/docs/Guide">
+                      <SidebarChild name="Getting Started" baseURL="/docs/Guide/getting-started" sub>
+                        <SidebarLink href="/docs/Guide/getting-started/getting-started-with-josh" name="Getting Started with Josh" sub />
+                        <SidebarLink href="/docs/Guide/getting-started/using-providers" name="Using Providers" sub />
+                      </SidebarChild>
+
+                      <SidebarChild name="Middleware" baseURL="/docs/Guide/middleware" sub>
+                        <SidebarLink href="/docs/Guide/middleware/what-is-middleware" name="What is Middleware?" sub />
+                        <SidebarLink href="/docs/Guide/middleware/creating-middleware" name="Creating Middleware" sub />
+                      </SidebarChild>
+                    </SidebarChild>
+                  </>
+                }
+              />
 
               <a href="https://discord.gg/N7ZKH3P" target="_blank" class="hover:text-emerald-500 block h-8 w-auto px-3 py-2 text-base">
                 Discord
