@@ -26,7 +26,9 @@
     "tsbuildinfo",
     "vite",
     "tailwindcss",
-    "colorette"
+    "colorette",
+    "Enmap",
+    "semibold"
   ],
   "search.exclude": {
     "**/.docusaurus/": true,

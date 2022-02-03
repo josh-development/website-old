@@ -1,0 +1,238 @@
+import { Codeblock, CodeblockContent, CodeblockIndex } from '../../../components/Codeblock.tsx';
+
+# Migrating from Enmap
+
+While Josh and Enmap are based on the same basic concepts and ideas.
+This being said, there are still many changes that wull need to happen in your code if you want to migrate from Enmap to Josh.
+
+## Why should I migrate?
+
+You should not migrate to Josh, "because it's newer".
+Josh is not an upgrade to Enmap, it's an entriely different package altogether.
+
+Anyways, here are a few reasons you should migrate:
+
+- It can be used accross multiple processes.
+  This is useful for projects such as a Discord bot which may need sharding or access to a database in an API backend _and_ frontend.
+- It has provider support, so it not only supports SQLite, but also Mongo, JSON, and many more.
+- It has bundles in ESM, CommonJS, and UMD.
+  This makes it possible for you to use Josh in many different project environments.
+
+## Prequisites
+
+- Josh utilizes promises _everywhere_, so you need to be familiar with them.
+  If you don't know how to use promises, you can learn them [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+- Make a backup of your project's database files before you migrate.
+
+## Migrating
+
+This part is actually quite simple if you follow the instructions below carefully.
+Most likely you have not learned a lot about Josh, how it works, and how to use it.
+If so, please reference the [Introduction](/docs/Guide/getting-started/introduction) guide.
+
+### Data Migration
+
+To start out we can create a new file called `migrations.js` somewhere where you keep source files in your project.
+Remember, anywhere we use the `provider` keyword should reference the provider you are using in your project.
+
+<Codeblock type="TYPESCRIPT_ESM_COMMONJS">
+  <CodeblockContent type="TYPESCRIPT_ESM_COMMONJS" index={CodeblockIndex.TypeScript}>
+    ```typescript
+    import Enmap from 'enmap';
+    import { Josh } from '@joshdb/core';
+    import { MyProvider } from '@joshdb/provider';
+
+    // Initialize your Enmap instance.
+    // Make sure all options coordinate with your options in the rest of your project.
+    // However, we must make sure to use the "fetchAll" option here.
+    const source = new Enmap({
+      name: 'source',
+      fetchAll: true
+    });
+
+    // Initialize your Josh instance.
+    // Remember to add any options to your provider if needed.
+    const target = new Josh({
+      name: 'target',
+      provider: new MyProvider()
+    });
+
+    // Create a migration function.
+    async function migrate() {
+      // Ensure sure the "source" is ready.
+      await source.defer;
+
+      // Let's log how many keys we have in the source database.
+      console.log(`Source database has ${source.count} rows.`);
+
+      // Let's log how many keys we have in the target database.
+      console.log(`Target database has ${await target.size()} rows.`);
+
+      // Get the exported json data from Enmap.
+      const data = source.export();
+
+      // Import the data into Josh.
+      await target.import(data);
+
+      console.log(`Migration complete! Target database now has ${await target.size()} keys.`);
+    }
+
+    // Run the migration.
+    migrate();
+    ```
+
+  </CodeblockContent>
+
+  <CodeblockContent type="TYPESCRIPT_ESM_COMMONJS" index={CodeblockIndex.ESM}>
+    ```typescript
+    import Enmap from 'enmap';
+    import { Josh } from '@joshdb/core';
+    import { MyProvider } from '@joshdb/provider';
+
+    // Initialize your Enmap instance.
+    // Make sure all options coordinate with your options in the rest of your project.
+    // However, we must make sure to use the "fetchAll" option here.
+    const source = new Enmap({
+      name: 'source',
+      fetchAll: true
+    });
+
+    // Initialize your Josh instance.
+    // Remember to add any options to your provider if needed.
+    const target = new Josh({
+      name: 'target',
+      provider: new MyProvider()
+    });
+
+    // Ensure sure the "source" is ready.
+    await source.defer;
+
+    // Let's log how many keys we have in the source database.
+    console.log(`Source database has ${source.count} rows.`);
+
+    // Let's log how many keys we have in the target database.
+    console.log(`Target database has ${await target.size()} rows.`);
+
+    // Get the exported json data from Enmap.
+    const data = source.export();
+
+    // Import the data into Josh.
+    await target.import(data);
+
+    console.log(`Migration complete! Target database now has ${await target.size()} keys.`);
+    ```
+
+  </CodeblockContent>
+
+  <CodeblockContent type="TYPESCRIPT_ESM_COMMONJS" index={CodeblockIndex.CommonJS}>
+    ```typescript
+    const Enmap = require('enmap');
+    const { Josh } = require('@joshdb/core');
+    const { MyProvider } = require('@joshdb/provider');
+
+    // Initialize your Enmap instance.
+    // Make sure all options coordinate with your options in the rest of your project.
+    // However, we must make sure to use the "fetchAll" option here.
+    const source = new Enmap({
+      name: 'source',
+      fetchAll: true
+    });
+
+    // Initialize your Josh instance.
+    // Remember to add any options to your provider if needed.
+    const target = new Josh({
+      name: 'target',
+      provider: new MyProvider()
+    });
+
+    // Create a migration function.
+    async function migrate() {
+      // Ensure sure the "source" is ready.
+      await source.defer;
+
+      // Let's log how many keys we have in the source database.
+      console.log(`Source database has ${source.count} rows.`);
+
+      // Let's log how many keys we have in the target database.
+      console.log(`Target database has ${await target.size()} rows.`);
+
+      // Get the exported json data from Enmap.
+      const data = source.export();
+
+      // Import the data into Josh.
+      await target.import(data);
+
+      console.log(`Migration complete! Target database now has ${await target.size()} keys.`);
+    }
+
+    // Run the migration.
+    migrate();
+    ```
+
+  </CodeblockContent>
+</Codeblock>
+
+### Changing your Code
+
+Here is the more difficult part of the migration. You'll need to change your entire codebase for Josh.
+As long as you follow these differences carefully you will be running your project using Josh in no time!
+
+#### Keys & Paths
+
+In Josh the key and path parameters are combined into a single parameter.
+Below we will use `set()` as an example method:
+
+```diff
+- enmap.set('key', 'value');
++ await josh.set('key', 'value');
+
+- enmap.set('key', 'path', 'value');
++ await josh.set('key.path', 'value');
+
+- enmap.set('my.key', 'value');
++ await josh.set({ key: 'my.key' }, 'value');
+
+- enmap.set('key', 'nested.path', 'value');
++ await josh.set('key.nested.path', 'value');
+```
+
+#### Methods
+
+Below is a list of all methods and properties that have changes in their name, usage, and/or signatures.
+
+```diff
+- enmap.autnum;
++ await josh.autoKey();
+
+- enmap.size;
+- enmap.count;
++ await josh.size();
+
+- enmap.array();
+- enmap.values();
++ await josh.values();
+
+- enmap.findAll();
++ await josh.filter();
+
+- enmap.exists();
++ await josh.has();
+```
+
+Below is a list of all methods and properties that have not yet been added, but will be eventually.
+
+- `observe()`
+
+Methods that will not be implemented:
+
+- `fetch()` and `fetchEverything()`. This is no longer required and is not relevant.
+- `evict()`. This is no longer required and is not relevant.
+- `changed()`. Cannot be implemented.
+- `sweep()`, `clone()`, and `equals()`. This no longer required and is not relevant.
+- `setProp()`, `pushIn()`, `getProp()`, `deleteProp()`, `removeFrom()`, and `hasProp()`. They're deprecated and can all be done with the simple key/path system.
+- `filterArray()`. Unnecessary method.
+
+## Conclusion
+
+Alright, this is quite a hefty page, with a lot of information.
+Thank you for using Josh and I hope you found this migration guide very informative!

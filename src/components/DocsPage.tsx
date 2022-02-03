@@ -139,11 +139,18 @@ export const DocsPage: Component<{ name: string }> = (props) => {
                   <DocsPageDropdown name="Getting Started" path="/docs/Guide/getting-started">
                     <DocsPageDropdownLink name="Introduction" href="/docs/Guide/getting-started/introduction" />
                     <DocsPageDropdownLink name="Using Providers" href="/docs/Guide/getting-started/using-providers" />
+
+                    <DocsPageDropdownLink name="Migrating from Enmap" href="/docs/Guide/getting-started/migrating-from-enmap" />
                   </DocsPageDropdown>
 
                   <DocsPageDropdown name="Middleware" path="/docs/Guide/middleware">
                     <DocsPageDropdownLink name="What is Middleware?" href="/docs/Guide/middleware/what-is-middleware" />
                     <DocsPageDropdownLink name="Creating Middleware" href="/docs/Guide/middleware/creating-middleware" />
+                  </DocsPageDropdown>
+
+                  <DocsPageDropdown name="Providers" path="/docs/Guide/providers">
+                    <DocsPageDropdownLink name="JSON" href="/docs/Guide/providers/json" />
+                    <DocsPageDropdownLink name="Mongo" href="/docs/Guide/providers/mongo" />
                   </DocsPageDropdown>
                 </DocsPageDropdown>
 
@@ -173,11 +180,18 @@ export const DocsPage: Component<{ name: string }> = (props) => {
               <DocsPageDropdown name="Getting Started" path="/docs/Guide/getting-started">
                 <DocsPageDropdownLink name="Introduction" href="/docs/Guide/getting-started/introduction" />
                 <DocsPageDropdownLink name="Using Providers" href="/docs/Guide/getting-started/using-providers" />
+
+                <DocsPageDropdownLink name="Migrating from Enmap" href="/docs/Guide/getting-started/migrating-from-enmap" />
               </DocsPageDropdown>
 
               <DocsPageDropdown name="Middleware" path="/docs/Guide/middleware">
                 <DocsPageDropdownLink name="What is Middleware?" href="/docs/Guide/middleware/what-is-middleware" />
                 <DocsPageDropdownLink name="Creating Middleware" href="/docs/Guide/middleware/creating-middleware" />
+              </DocsPageDropdown>
+
+              <DocsPageDropdown name="Providers" path="/docs/Guide/providers">
+                <DocsPageDropdownLink name="JSON" href="/docs/Guide/providers/json" />
+                <DocsPageDropdownLink name="Mongo" href="/docs/Guide/providers/mongo" />
               </DocsPageDropdown>
             </DocsPageDropdown>
           </div>
