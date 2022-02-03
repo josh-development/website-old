@@ -8,7 +8,7 @@ const WelcomePage: Component = () => {
   const [state] = useContext(AppContext);
 
   return (
-    <DocsPage name="Welcome | Josh">
+    <DocsPage name="Welcome">
       <Markdown>
         <img src={`/src/assets/josh-${state().theme}.png`} alt="Josh Logo" />
 
