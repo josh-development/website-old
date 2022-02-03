@@ -1,0 +1,70 @@
+import { Codeblock, CodeblockContent, CodeblockIndex } from '../../../components/Codeblock.tsx';
+
+# Introduction
+
+Welcome to Josh, were glad you have decided to follow our guide to the wonders of simple database integration.
+
+## Getting Started
+
+To use Josh, you need to install `@joshdb/core`. You can do this by running the following command:
+
+<Codeblock type="NPM_YARN">
+  <CodeblockContent type="NPM_YARN" index={CodeblockIndex.NPM}>
+    ```bash
+    npm install @joshdb/core
+    ```
+  </CodeblockContent>
+
+  <CodeblockContent type="NPM_YARN" index={CodeblockIndex.Yarn}>
+    ```bash
+    yarn add @joshdb/core
+    ```
+    </CodeblockContent>
+</Codeblock>
+
+## Quick Start
+
+To begin, import `@joshdb/core` and initiate [`Josh`](https://github.com/josh-development/core/blob/main/src/lib/structures/Josh.ts). This is where you can customize Josh's behavior.
+
+The below snippet will create a [`Josh`](https://github.com/josh-development/core/blob/main/src/lib/structures/Josh.ts) instance, by default (without a provider), this will save all data in-memory.
+
+<Codeblock type="TYPESCRIPT_ESM_COMMONJS">
+  <CodeblockContent type="TYPESCRIPT_ESM_COMMONJS" index={CodeblockIndex.TypeScript}>
+    ```typescript
+    import { Josh } from '@joshdb/core';
+
+    interface User {
+      id: string;
+
+      username: string;
+    }
+
+    const josh = new Josh<User>({ name: 'users' });
+
+    await josh.init();
+    ```
+
+  </CodeblockContent>
+
+  <CodeblockContent type="TYPESCRIPT_ESM_COMMONJS" index={CodeblockIndex.ESM}>
+    ```javascript
+    import { Josh } from '@joshdb/core';
+
+    const josh = new Josh({ name: 'name' });
+
+    await josh.init();
+    ```
+
+  </CodeblockContent>
+
+  <CodeblockContent type="TYPESCRIPT_ESM_COMMONJS" index={CodeblockIndex.CommonJS}>
+    ```javascript
+    const { Josh } = require('@joshdb/core');
+
+    const josh = new Josh({ name: 'name' });
+
+    await josh.init();
+    ```
+
+  </CodeblockContent>
+</Codeblock>

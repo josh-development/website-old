@@ -1,45 +1,52 @@
+import { Codeblock, CodeblockContent, CodeblockIndex } from '../../../components/Codeblock.tsx';
+
 # Using Providers
 
 What is a provider? A Provider is simply a layer between [`Josh`](https://github.com/josh-development/core/blob/main/src/lib/structures/Josh.ts) and a database or any other backend you use to store your data. Each provider receives a payload from every method you use in your instance and returns a modified version of it.
+
+## Getting Started
 
 Providers can be installed separately from Josh using your package manager (e.g. npm). You can also make your own provider by extending the exported [`JoshProvider`](https://github.com/josh-development/core/blob/main/src/lib/structures/JoshProvider.ts) class.
 
 In the example below we will use the default in-memory provider which uses the Node.js native [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) class.
 
-### CommonJS
+<Codeblock type="TYPESCRIPT_ESM_COMMONJS">
+  <CodeblockContent type="TYPESCRIPT_ESM_COMMONJS" index={CodeblockIndex.TypeScript}>
+    ```typescript
+    import { Josh, MapProvider } from '@joshdb/core';
 
-```javascript
-const { Josh, MapProvider } = require('@joshdb/core');
+    interface User {
+      id: string;
 
-const josh = new Josh({ name: 'name', provider: new MapProvider() });
+      username: string;
+    }
 
-await josh.init();
-```
+    const josh = new Josh<User>({ name: 'users', provider: new MapProvider() });
 
-### ESM
+    await josh.init();
+    ```
 
-```javascript
-const { Josh, MapProvider } from '@joshdb/core';
+  </CodeblockContent>
 
-const josh = new Josh({ name: 'name', provider: new MapProvider() });
+  <CodeblockContent type="TYPESCRIPT_ESM_COMMONJS" index={CodeblockIndex.ESM}>
+    ```javascript
+    import { Josh, MapProvider } from '@joshdb/core';
 
-await josh.init();
-```
+    const josh = new Josh({ name: 'name', provider: new MapProvider() });
 
-### TypeScript
+    await josh.init();
+    ```
 
-If you'd like to define the stored value type, then you can use [generics](https://www.typescriptlang.org/docs/handbook/2/generics.html).
+  </CodeblockContent>
 
-```typescript
-import { Josh, MapProvider } from '@joshdb/core';
+  <CodeblockContent type="TYPESCRIPT_ESM_COMMONJS" index={CodeblockIndex.CommonJS}>
+    ```javascript
+    const { Josh, MapProvider } = require('@joshdb/core');
 
-interface User {
-  name: string;
+    const josh = new Josh({ name: 'name', provider: new MapProvider() });
 
-  email: string;
-}
+    await josh.init();
+    ```
 
-const josh = new Josh<User>({ name: 'name', provider: new MapProvider() });
-
-await josh.init();
-```
+  </CodeblockContent>
+</Codeblock>

@@ -1,23 +1,14 @@
 import { Component } from 'solid-js';
-import Header from '../../../../components/Header';
-import Markdown from '../../../../components/Markdown';
-import Sidebar from '../../../../components/Sidebar';
+import { DocsPage } from '../../../../components/DocsPage';
+import { Markdown } from '../../../../components/Markdown';
 import UsingProviders from '../../../../docs/Guide/getting-started/UsingProviders.mdx';
 
-const UsingProvidersPage: Component = () => {
-  document.title = 'Using Providers | Josh';
-
-  return (
-    <>
-      <Header />
-
-      <Sidebar>
-        <Markdown>
-          <UsingProviders />
-        </Markdown>
-      </Sidebar>
-    </>
-  );
-};
+const UsingProvidersPage: Component = () => (
+  <DocsPage name="Using Providers">
+    <Markdown>
+      <UsingProviders />
+    </Markdown>
+  </DocsPage>
+);
 
 export default UsingProvidersPage;

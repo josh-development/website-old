@@ -35,7 +35,7 @@ code {
 }
 
 pre > code {
-  @apply whitespace-pre block p-4 border-2 border-gray-300 bg-neutral-100 dark:bg-slate-900 rounded-md;
+  @apply whitespace-pre block p-4 shadow-md dark:shadow-slate-800 bg-neutral-100 dark:bg-slate-900 rounded-md;
 }
 
 a > code {
@@ -57,14 +57,14 @@ pre > code.hljs {
 .hljs-template-variable,
 .hljs-type,
 .hljs-vriable.language_ {
-  @apply text-red-400;
+  @apply text-red-400 brightness-90;
 }
 
 .hljs-title,
 .hljs-title.class_,
 .hljs-title.class_.inherited__,
 .hljs-title.function_ {
-  @apply text-purple-400;
+  @apply text-violet-400 brightness-90;
 }
 
 .hljs-attr,
@@ -77,18 +77,18 @@ pre > code.hljs {
 .hljs-selector-class,
 .hljs-selector-id,
 .hljs-variable {
-  @apply text-sky-500;
+  @apply text-sky-400 brightness-90;
 }
 
 .hljs-meta .hljs-string,
 .hljs-regexp,
 .hljs-string {
-  @apply text-cyan-800 dark:text-green-600;
+  @apply text-sky-300 brightness-90;
 }
 
 .hljs-built_in,
 .hljs-symbol {
-  @apply text-amber-500;
+  @apply text-orange-400 brightness-90;
 }
 
 .hljs-code,

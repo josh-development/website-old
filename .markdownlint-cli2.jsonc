@@ -5,10 +5,7 @@
     "MD003": true,
     "MD009": true,
     "MD011": true,
-    "MD012": true,
-    "MD013": {
-      "line_length": 120
-    }
+    "MD012": true
   },
   "globs": ["src/docs/{General,Guide}/**/*.{md,mdx}"]
 }

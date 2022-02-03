@@ -25,8 +25,8 @@ export const routes: RouteDefinition[] = [
             path: '/getting-started',
             children: [
               {
-                path: '/getting-started-with-josh',
-                component: lazy(() => import('../pages/docs/Guide/getting-started/GettingStarted'))
+                path: '/introduction',
+                component: lazy(() => import('../pages/docs/Guide/getting-started/Introduction'))
               },
               {
                 path: '/using-providers',

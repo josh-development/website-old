@@ -1,11 +1,15 @@
 import highlight from 'highlight.js';
-import { Component, onMount } from 'solid-js';
-import Container from './Container';
+import { Component, createEffect, useContext } from 'solid-js';
+import { AppContext } from '../App';
+import { Container } from './Container';
 
-const Markdown: Component = (props) => {
-  onMount(() => highlight.highlightAll());
+export const Markdown: Component = (props) => {
+  const [state] = useContext(AppContext);
+
+  createEffect(() => {
+    state();
+    highlight.highlightAll();
+  });
 
   return <Container class="markdown">{props.children}</Container>;
 };
-
-export default Markdown;

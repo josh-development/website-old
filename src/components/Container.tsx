@@ -1,6 +1,6 @@
 import { Component } from 'solid-js';
 
-const Container: Component<{ class?: string }> = (props) => {
+export const Container: Component<{ class?: string }> = (props) => {
   return (
     <section
       class={
@@ -11,5 +11,3 @@ const Container: Component<{ class?: string }> = (props) => {
     </section>
   );
 };
-
-export default Container;

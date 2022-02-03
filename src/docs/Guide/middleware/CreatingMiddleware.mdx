@@ -1,3 +1,5 @@
+import { Codeblock, CodeblockContent, CodeblockIndex } from '../../../components/Codeblock.tsx';
+
 # Creating Middleware
 
 There are currently two ways to create middleware:
@@ -11,126 +13,133 @@ As an example, we are going to check if the `value` in the [`SetPayload`](https:
 
 If you are using classes then you will have to identify when your methods will run using the `options.conditions` property.
 
-### CommonJS
+<Codeblock type="TYPESCRIPT_ESM_COMMONJS">
+  <CodeblockContent type="TYPESCRIPT_ESM_COMMONJS" index={CodeblockIndex.TypeScript}>
+    ```typescript
+    import { ApplyMiddlewareOptions, Josh, Method, Middleware, SetPayload } from '@joshdb/core';
 
-```javascript
-const { Josh, Method, Middleware } = require('@joshdb/core');
+    const josh = new Josh({ name: 'name' });
 
-const josh = new Josh({ name: 'name' });
+    await josh.init();
 
-await josh.init();
+    @ApplyMiddlewareOptions({ name: 'my-middleware', conditions: { pre: [Method.Set], post: [] }})
+    class MyMiddleware<StoredValue = unknown> extends Middleware<StoredValue> {
+      public [Method.Set]<Value = StoredValue>(payload: SetPayload<Value>): SetPayload<Value> {
+        if (typeof payload.value === 'string') payload.value = payload.value.toUpperCase();
 
-class MyMiddleware extends Middleware {
-  constructor() {
-    super({ name: 'my-middleware', conditions: { pre: [Method.Set], post: [] } });
-  }
+        return payload;
+      }
+    }
 
-  [Method.Set](payload) {
-    if (typeof payload.value === 'string') payload.value = payload.value.toUpperCase();
+    josh.use(new MyMiddleware());
+    ```
 
-    return payload;
-  }
-}
+  </CodeblockContent>
 
-josh.use(new MyMiddleware());
-```
+  <CodeblockContent type="TYPESCRIPT_ESM_COMMONJS" index={CodeblockIndex.ESM}>
+    ```javascript
+    import { Josh, Method, Middleware } from '@joshdb/core';
 
-### ESM
+    const josh = new Josh({ name: 'name' });
 
-```javascript
-import { Josh, Method, Middleware } from '@joshdb/core';
+    await josh.init();
 
-const josh = new Josh({ name: 'name' });
+    class MyMiddleware extends Middleware {
+      constructor() {
+        super({ name: 'my-middleware', conditions: { pre: [Method.Set], post: [] } });
+      }
 
-await josh.init();
+      [Method.Set](payload) {
+        if (typeof payload.value === 'string') payload.value = payload.value.toUpperCase();
 
-class MyMiddleware extends Middleware {
-  constructor() {
-    super({ name: 'my-middleware', conditions: { pre: [Method.Set], post: [] } });
-  }
+        return payload;
+      }
+    }
 
-  [Method.Set](payload) {
-    if (typeof payload.value === 'string') payload.value = payload.value.toUpperCase();
+    josh.use(new MyMiddleware());
+    ```
 
-    return payload;
-  }
-}
+  </CodeblockContent>
 
-josh.use(new MyMiddleware());
-```
+  <CodeblockContent type="TYPESCRIPT_ESM_COMMONJS" index={CodeblockIndex.CommonJS}>
+    ```javascript
+    const { Josh, Method, Middleware } = require('@joshdb/core');
 
-### TypeScript
+    const josh = new Josh({ name: 'name' });
 
-```typescript
-import { Josh, Method, Middleware, SetPayload } from '@joshdb/core';
+    await josh.init();
 
-const josh = new Josh({ name: 'name' });
+    class MyMiddleware extends Middleware {
+      constructor() {
+        super({ name: 'my-middleware', conditions: { pre: [Method.Set], post: [] } });
+      }
 
-await josh.init();
+      [Method.Set](payload) {
+        if (typeof payload.value === 'string') payload.value = payload.value.toUpperCase();
 
-class MyMiddleware<StoredValue = unknown> extends Middleware<StoredValue> {
-  public constructor() {
-    super({ name: 'my-middleware', conditions: { pre: [Method.Set], post: [] } });
-  }
+        return payload;
+      }
+    }
 
-  public [Method.Set]<Value = StoredValue>(payload: SetPayload<Value>): SetPayload<Value> {
-    if (typeof payload.value === 'string') payload.value = payload.value.toUpperCase();
+    josh.use(new MyMiddleware());
+    ```
 
-    return payload;
-  }
-}
-
-josh.use(new MyMiddleware());
-```
+  </CodeblockContent>
+</Codeblock>
 
 ## Using Functions
 
 If you are using functions then you will have to identify when your methods will run by passing a `Josh.UseMiddlewareOptions` object to the `Josh.use()` method.
 
-### CommonJS
+<Codeblock type="TYPESCRIPT_ESM_COMMONJS">
+  <CodeblockContent type="TYPESCRIPT_ESM_COMMONJS" index={CodeblockIndex.TypeScript}>
+    ```typescript
+    import { Josh, Method, SetPayload, Trigger } from '@joshdb/core';
 
-```javascript
-const { Josh, Method, Trigger } = require('@joshdb/core');
+    const josh = new Josh({ name: 'name' });
 
-const josh = new Josh({ name: 'name' });
+    await josh.init();
 
-await josh.init();
+    josh.use({ name: 'my-middleware', trigger: Trigger.PreProvider, method: Method.Set }, (payload: SetPayload<StoredValue>) => {
+      if (typeof payload.value === 'string') payload.value = payload.value.toUpperCase();
 
-josh.use({ name: 'my-middleware', trigger: Trigger.PreProvider, method: Method.Set }, (payload => {
-    if (typeof payload.value === 'string') payload.value = payload.value.toUpperCase();
+      return payload;
+    });
+    ```
 
-    return payload;
-});
-```
+  </CodeblockContent>
 
-### ESM
+  <CodeblockContent type="TYPESCRIPT_ESM_COMMONJS" index={CodeblockIndex.ESM}>
+    ```javascript
+    import { Josh, Method, Trigger } from '@joshdb/core';
 
-```javascript
-import { Josh, Method, Trigger } from '@joshdb/core';
+    const josh = new Josh({ name: 'name' });
 
-const josh = new Josh({ name: 'name' });
+    await josh.init();
 
-await josh.init();
+    josh.use({ name: 'my-middleware', trigger: Trigger.PrePovider, method: Method.Set }, (payload) => {
+      if (typeof payload.value === 'string') payload.value = payload.value.toUpperCase();
 
-josh.use({ name: 'my-middleware', trigger: Trigger.PrePovider, method: Method.Set }, (payload) => {
-  if (typeof payload.value === 'string') payload.value = payload.value.toUpperCase();
+      return payload;
+    });
+    ```
 
-  return payload;
-});
-```
+  </CodeblockContent>
 
-### TypeScript
+  <CodeblockContent type="TYPESCRIPT_ESM_COMMONJS" index={CodeblockIndex.CommonJS}>
+    ```javascript
+    const { Josh, Method, Trigger } = require('@joshdb/core');
 
-```typescript
-import { Josh, Method, SetPayload, Trigger } from '@joshdb/core';
+    const josh = new Josh({ name: 'name' });
 
-const josh = new Josh({ name: 'name' });
+    await josh.init();
 
-await josh.init();
+    josh.use({ name: 'my-middleware', trigger: Trigger.PreProvider, method: Method.Set }, (payload => {
+      if (typeof payload.value === 'string') payload.value = payload.value.toUpperCase();
 
-josh.use({ name: 'my-middleware', trigger: Trigger.PreProvider, method: Method.Set }, (payload: SetPayload<StoredValue>) => {
-  if (typeof payload.value === 'string') payload.value = payload.value.toUpperCase();
+      return payload;
+    });
+    ```
 
-  return payload;
-});
-```
+  </CodeblockContent>
+</Codeblock>
