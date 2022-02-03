@@ -76,7 +76,7 @@ export const Page: Component<{ name: string }> = (props) => {
                 <div class="flex space-x-4">
                   <PageXLink name="Home" href="/" />
                   <PageXLink name="Documentation" href="/docs/General/Welcome" paths={['/docs/General', '/docs/Documentation']} />
-                  <PageXLink name="Guide" href="/docs/Guide/getting-started/getting-started-with-josh" paths={['/docs/Guide']} />
+                  <PageXLink name="Guide" href="/docs/Guide/getting-started/introduction" paths={['/docs/Guide']} />
                 </div>
               </div>
             </div>
@@ -108,7 +108,7 @@ export const Page: Component<{ name: string }> = (props) => {
               <div class="p-2 pb-3 space-y-1">
                 <PageYLink name="Home" href="/" />
                 <PageYLink name="Documentation" href="/docs/General/Welcome" paths={['/docs/General', '/docs/Documentation']} />
-                <PageYLink name="Guide" href="/docs/Guide/getting-started/getting-started-with-josh" paths={['/docs/Guide']} />
+                <PageYLink name="Guide" href="/docs/Guide/getting-started/introduction" paths={['/docs/Guide']} />
 
                 <a href="https://discord.gg/N7ZKH3P" target="_blank" class="hover:text-emerald-500 block h-8 w-auto px-3 py-2 text-base">
                   Discord
