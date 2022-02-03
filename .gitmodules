@@ -1,7 +1,7 @@
 [submodule "projects/serialize"]
 	path = projects/serialize
 	url = https://github.com/josh-development/serialize
-	branch = feat/serialize/add-serialize
+	branch = main
 [submodule "projects/core"]
 	path = projects/core
 	url = https://github.com/josh-development/core
