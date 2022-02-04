@@ -64,7 +64,7 @@ export const DocsPage: Component<{ name: string }> = (props) => {
 
   return (
     <>
-      <nav class="sticky top-0 bg-neutral-100 dark:bg-slate-900 shadow-md dark:text-white">
+      <nav class="sticky top-0 z-10 bg-neutral-100 dark:bg-slate-900 shadow-md dark:text-white">
         <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
           <div class="relative flex items-center justify-between h-16">
             <div class="absolute sm:hidden inset-y-0 left-0 items-center">
@@ -152,8 +152,12 @@ export const DocsPage: Component<{ name: string }> = (props) => {
                   <DocsPageDropdown name="Providers" path="/docs/Guide/providers">
                     <DocsPageDropdownLink name="JSON" href="/docs/Guide/providers/json" />
                     <DocsPageDropdownLink name="Mongo" href="/docs/Guide/providers/mongo" />
+
+                    <DocsPageDropdownLink name="Contributing Your Own Provider" href="/docs/Guide/providers/contributing-your-own-provider" />
                   </DocsPageDropdown>
                 </DocsPageDropdown>
+
+                <DocsPageDropdown name="Documentation" path="/docs/Documentation"></DocsPageDropdown>
 
                 <a href="https://discord.gg/N7ZKH3P" target="_blank" class="hover:text-emerald-500 block h-8 w-auto px-3 py-2 text-base">
                   Discord
@@ -194,6 +198,8 @@ export const DocsPage: Component<{ name: string }> = (props) => {
               <DocsPageDropdown name="Providers" path="/docs/Guide/providers">
                 <DocsPageDropdownLink name="JSON" href="/docs/Guide/providers/json" />
                 <DocsPageDropdownLink name="Mongo" href="/docs/Guide/providers/mongo" />
+
+                <DocsPageDropdownLink name="Contributing Your Own Provider" href="/docs/Guide/providers/contributing-your-own-provider" />
               </DocsPageDropdown>
             </DocsPageDropdown>
           </div>
