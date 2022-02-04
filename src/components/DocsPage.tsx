@@ -141,6 +141,7 @@ export const DocsPage: Component<{ name: string }> = (props) => {
                     <DocsPageDropdownLink name="Using Providers" href="/docs/Guide/getting-started/using-providers" />
 
                     <DocsPageDropdownLink name="Migrating from Enmap" href="/docs/Guide/getting-started/migrating-from-enmap" />
+                    <DocsPageDropdownLink name="Migrating from v1" href="/docs/Guide/getting-started/migrating-from-v1" />
                   </DocsPageDropdown>
 
                   <DocsPageDropdown name="Middleware" path="/docs/Guide/middleware">
@@ -182,6 +183,7 @@ export const DocsPage: Component<{ name: string }> = (props) => {
                 <DocsPageDropdownLink name="Using Providers" href="/docs/Guide/getting-started/using-providers" />
 
                 <DocsPageDropdownLink name="Migrating from Enmap" href="/docs/Guide/getting-started/migrating-from-enmap" />
+                <DocsPageDropdownLink name="Migrating from v1" href="/docs/Guide/getting-started/migrating-from-v1" />
               </DocsPageDropdown>
 
               <DocsPageDropdown name="Middleware" path="/docs/Guide/middleware">

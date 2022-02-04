@@ -35,6 +35,10 @@ export const routes: RouteDefinition[] = [
               {
                 path: '/migrating-from-enmap',
                 component: lazy(() => import('../pages/docs/Guide/getting-started/MigratingFromEnmap'))
+              },
+              {
+                path: '/migrating-from-v1',
+                component: lazy(() => import('../pages/docs/Guide/getting-started/MigratingFromV1'))
               }
             ]
           },

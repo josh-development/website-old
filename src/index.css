@@ -27,7 +27,7 @@
 }
 
 .markdown > ul {
-  @apply font-normal list-disc ml-5;
+  @apply font-normal list-disc ml-5 space-y-1;
 }
 
 .markdown > hr {
