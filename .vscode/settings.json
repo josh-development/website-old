@@ -28,7 +28,8 @@
     "tailwindcss",
     "colorette",
     "Enmap",
-    "semibold"
+    "semibold",
+    "joshdb"
   ],
   "search.exclude": {
     "**/.docusaurus/": true,

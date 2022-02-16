@@ -1,8 +1,8 @@
 import { Component, createEffect, Show, useContext } from 'solid-js';
-import { AppContext } from '../App';
+import { App } from '../App';
 
 const CodeblockTitle: Component<{ name: string; type: CodeblockType; index: CodeblockIndex }> = (props) => {
-  const [state, setState] = useContext(AppContext);
+  const [state, setState] = useContext(App.Context);
 
   createEffect(() => {
     localStorage.setItem(props.type, state().tabs[props.type].toString());
@@ -23,7 +23,7 @@ const CodeblockTitle: Component<{ name: string; type: CodeblockType; index: Code
 };
 
 export const CodeblockContent: Component<{ type: CodeblockType; index: CodeblockIndex }> = (props) => {
-  const [state] = useContext(AppContext);
+  const [state] = useContext(App.Context);
 
   return <Show when={state().tabs[props.type] === props.index} children={props.children} />;
 };
@@ -31,20 +31,20 @@ export const CodeblockContent: Component<{ type: CodeblockType; index: Codeblock
 export const Codeblock: Component<{ type: CodeblockType }> = (props) => {
   return (
     <>
-      <div class="flex space-x-2 text-lg">
+      <div class='flex space-x-2 text-lg'>
         <Show
           when={props.type === 'NPM_YARN'}
           fallback={
             <>
-              <CodeblockTitle name="TypeScript" type="TYPESCRIPT_ESM_COMMONJS" index={CodeblockIndex.TypeScript} />
-              <CodeblockTitle name="ESM" type="TYPESCRIPT_ESM_COMMONJS" index={CodeblockIndex.ESM} />
-              <CodeblockTitle name="CommonJS" type="TYPESCRIPT_ESM_COMMONJS" index={CodeblockIndex.CommonJS} />
+              <CodeblockTitle name='TypeScript' type='TYPESCRIPT_ESM_COMMONJS' index={CodeblockIndex.TypeScript} />
+              <CodeblockTitle name='ESM' type='TYPESCRIPT_ESM_COMMONJS' index={CodeblockIndex.ESM} />
+              <CodeblockTitle name='CommonJS' type='TYPESCRIPT_ESM_COMMONJS' index={CodeblockIndex.CommonJS} />
             </>
           }
           children={
             <>
-              <CodeblockTitle name="NPM" type={props.type} index={CodeblockIndex.NPM} />
-              <CodeblockTitle name="Yarn" type={props.type} index={CodeblockIndex.Yarn} />
+              <CodeblockTitle name='NPM' type={props.type} index={CodeblockIndex.NPM} />
+              <CodeblockTitle name='Yarn' type={props.type} index={CodeblockIndex.Yarn} />
             </>
           }
         />

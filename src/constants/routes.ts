@@ -54,6 +54,15 @@ export const routes: RouteDefinition[] = [
                 component: lazy(() => import('../pages/docs/Guide/middleware/CreatingMiddleware'))
               }
             ]
+          },
+          {
+            path: '/providers',
+            children: [
+              {
+                path: '/contributing-your-own-provider',
+                component: lazy(() => import('../pages/docs/Guide/providers/ContributingYourOwnProvider'))
+              }
+            ]
           }
         ]
       },
@@ -61,8 +70,51 @@ export const routes: RouteDefinition[] = [
         path: '/Documentation',
         children: [
           {
-            path: '/documentation',
-            component: lazy(() => import('../pages/docs/Documentation/Documentation'))
+            path: '/:packageName',
+            children: [
+              {
+                path: '/',
+                component: lazy(() => import('../pages/docs/Documentation/Package'))
+              },
+              {
+                path: '/namespaces',
+                children: [
+                  {
+                    path: '/:namespaceName',
+                    children: [
+                      {
+                        path: '/',
+                        component: lazy(() => import('../pages/docs/Documentation/Namespace'))
+                      },
+                      {
+                        path: '/interfaces/:interfaceName',
+                        component: lazy(() => import('../pages/docs/Documentation/namespaces/Interface'))
+                      },
+                      {
+                        path: '/enumerations/:enumerationName',
+                        component: lazy(() => import('../pages/docs/Documentation/namespaces/Enumeration'))
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                path: '/classes/:className',
+                component: lazy(() => import('../pages/docs/Documentation/Class'))
+              },
+              {
+                path: '/enumerations/:enumerationName',
+                component: lazy(() => import('../pages/docs/Documentation/Enumeration'))
+              },
+              {
+                path: '/functions/:functionName',
+                component: lazy(() => import('../pages/docs/Documentation/Function'))
+              },
+              {
+                path: '/interfaces/:interfaceName',
+                component: lazy(() => import('../pages/docs/Documentation/Interface'))
+              }
+            ]
           }
         ]
       }

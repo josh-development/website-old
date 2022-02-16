@@ -1,6 +1,8 @@
 {
   "extends": "@sapphire",
   "rules": {
+    "jsx-quotes": ["error", "prefer-single"],
+    "no-case-declarations": "off",
     "no-tabs": "error",
     "@typescript-eslint/no-namespace": "off",
     "@typescript-eslint/class-literal-property-style": "off",

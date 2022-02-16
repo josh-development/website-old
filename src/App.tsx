@@ -4,24 +4,8 @@ import { Signal } from 'solid-js/types/reactive/signal';
 import { CodeblockIndex } from './components/Codeblock';
 import { routes } from './constants/routes';
 
-export interface IAppContext {
-  theme: Theme;
-
-  tabs: Tabs;
-}
-
-export type Theme = 'dark' | 'light';
-
-export interface Tabs {
-  TYPESCRIPT_ESM_COMMONJS: CodeblockIndex.TypeScript | CodeblockIndex.ESM | CodeblockIndex.CommonJS;
-
-  NPM_YARN: CodeblockIndex.NPM | CodeblockIndex.Yarn;
-}
-
-export const AppContext = createContext<Signal<IAppContext>>();
-
-export default function App() {
-  const [state, setState] = createSignal<IAppContext>({
+export function App() {
+  const [state, setState] = createSignal<App.ContextType>({
     theme: localStorage.getItem('theme') === 'dark' ? 'dark' : 'light',
     tabs: {
       TYPESCRIPT_ESM_COMMONJS: CodeblockIndex.TypeScript,
@@ -34,12 +18,12 @@ export default function App() {
   const Routes = useRoutes(routes);
 
   return (
-    <AppContext.Provider
+    <App.Context.Provider
       value={[state, setState]}
       children={
         <Router
           children={
-            <div class="font-medium bg-stone-200 dark:bg-slate-800">
+            <div class='font-medium bg-stone-200 dark:bg-slate-800'>
               <Routes />
             </div>
           }
@@ -47,4 +31,22 @@ export default function App() {
       }
     />
   );
+}
+
+export namespace App {
+  export interface ContextType {
+    theme: Theme;
+
+    tabs: Tabs;
+  }
+
+  export type Theme = 'dark' | 'light';
+
+  export interface Tabs {
+    TYPESCRIPT_ESM_COMMONJS: CodeblockIndex.TypeScript | CodeblockIndex.ESM | CodeblockIndex.CommonJS;
+
+    NPM_YARN: CodeblockIndex.NPM | CodeblockIndex.Yarn;
+  }
+
+  export const Context = createContext<Signal<ContextType>>();
 }

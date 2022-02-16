@@ -2,8 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+.link {
+  @apply text-emerald-500 hover:underline;
+}
+
 .markdown {
   @apply space-y-4;
+}
+
+.markdown > h1,
+.markdown > h2,
+.markdown > h3 {
+  @apply my-6;
 }
 
 .markdown > h1 {
@@ -15,11 +25,21 @@
 }
 
 .markdown > h3 {
-  @apply text-3xl;
+  @apply text-2xl;
+}
+
+.markdown > h4,
+.markdown > h5,
+.markdown > h6 {
+  @apply my-3;
 }
 
 .markdown > h4 {
-  @apply text-2xl;
+  @apply text-xl;
+}
+
+.markdown > h5 {
+  @apply text-lg;
 }
 
 .markdown > p {
@@ -31,7 +51,7 @@
 }
 
 .markdown > hr {
-  @apply my-6;
+  @apply border-[1px] rounded-md border-neutral-400 dark:border-slate-700;
 }
 
 code {
@@ -39,7 +59,7 @@ code {
 }
 
 pre > code {
-  @apply whitespace-pre block p-4 shadow-md dark:shadow-slate-800 bg-neutral-100 dark:bg-slate-900 rounded-md;
+  @apply whitespace-pre block p-4 shadow-md dark:shadow-slate-800 bg-neutral-100 dark:bg-slate-900 rounded-md overflow-x-auto;
 }
 
 a > code {
