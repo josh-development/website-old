@@ -1,6 +1,6 @@
 <div align="center">
 
-![Josh Logo](https://evie.codes/josh-light.png)
+![Josh Logo](./src/assets//josh-light.png)
 
 # Josh Website
 
