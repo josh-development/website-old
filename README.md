@@ -19,4 +19,5 @@
 After forking/cloning this repository to a folder locally:
 
 1. Install dependencies with `yarn`
-2. Run `yarn dev` to start the Vite development server.
+2. Run `yarn docs` to generate and import docs from sub-modules.
+3. Run `yarn dev` to start the Vite development server.
