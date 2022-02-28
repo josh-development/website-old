@@ -39,7 +39,7 @@ jobs:
             git add yarn.lock
             git config user.name "${GITHUB_ACTOR}"
             git config user.email "${GITHUB_EMAIL}"
-            git commit -snm "chore: updated GitHub Submodules at $(date '+%F %H:%M.%S')" || true
+            git commit -snm "chore: updated git submodules at $(date '+%F %H:%M.%S')" || true
             git push origin $TARGET_BRANCH
           fi
         env:
