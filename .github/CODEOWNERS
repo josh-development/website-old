@@ -1,5 +1,9 @@
 /.github/ @RealShadowNova
 /.husky/ @RealShadowNova
 /.vscode/ @RealShadowNova
+/.yarn/ @RealShadowNova
+/projects/ @RealShadowNova
 /scripts/ @RealShadowNova
-/src/ @RealShadowNova
+/src/ @eslachance @RealShadowNova
+LICENSE @eslachance
+package.json @RealShadowNova
