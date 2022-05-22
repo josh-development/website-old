@@ -30,8 +30,8 @@
     "solid-js": "^1.4.2"
   },
   "devDependencies": {
-    "@commitlint/cli": "^16.3.0",
-    "@commitlint/config-conventional": "^16.2.4",
+    "@commitlint/cli": "^17.0.0",
+    "@commitlint/config-conventional": "^17.0.0",
     "@mdx-js/rollup": "^2.1.1",
     "@sapphire/eslint-config": "^4.3.5",
     "@sapphire/ts-config": "^3.3.4",
