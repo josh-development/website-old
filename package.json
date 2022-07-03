@@ -27,7 +27,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "solid-js": "^1.4.5"
+    "solid-js": "^1.4.6"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
