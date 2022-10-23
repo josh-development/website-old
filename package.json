@@ -40,7 +40,7 @@
     "@types/tailwindcss": "^3.0.11",
     "autoprefixer": "^10.4.12",
     "colorette": "^2.0.19",
-    "eslint": "~8.25.0",
+    "eslint": "~8.26.0",
     "highlight.js": "^11.6.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
@@ -50,11 +50,11 @@
     "pretty-quick": "^3.1.3",
     "solid-app-router": "^0.4.2",
     "solid-mdx": "^0.0.6",
-    "tailwindcss": "^3.1.8",
-    "typedoc": "^0.23.16",
+    "tailwindcss": "^3.2.1",
+    "typedoc": "^0.23.18",
     "typescript": "^4.8.4",
     "vite": "^3.1.8",
-    "vite-plugin-solid": "^2.3.9"
+    "vite-plugin-solid": "^2.3.10"
   },
   "repository": {
     "type": "git",
