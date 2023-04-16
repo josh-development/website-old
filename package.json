@@ -30,12 +30,12 @@
     "solid-js": "^1.7.3"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.5.1",
-    "@commitlint/config-conventional": "^17.4.4",
+    "@commitlint/cli": "^17.6.1",
+    "@commitlint/config-conventional": "^17.6.1",
     "@mdx-js/rollup": "^2.3.0",
-    "@sapphire/eslint-config": "^4.3.8",
+    "@sapphire/eslint-config": "^4.4.1",
     "@sapphire/ts-config": "^3.3.4",
-    "@sapphire/utilities": "^3.11.0",
+    "@sapphire/utilities": "^3.11.1",
     "@types/node": "^18.15.11",
     "@types/tailwindcss": "^3.0.11",
     "autoprefixer": "^10.4.14",
@@ -51,7 +51,7 @@
     "solid-app-router": "^0.4.2",
     "solid-mdx": "^0.0.6",
     "tailwindcss": "^3.3.1",
-    "typedoc": "^0.24.1",
+    "typedoc": "^0.24.2",
     "typescript": "^4.9.5",
     "vite": "^4.2.1",
     "vite-plugin-solid": "^2.7.0"
